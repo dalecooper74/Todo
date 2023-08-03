@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.banner{
+    height: 35vh;
+    background-image: linear-gradient(to right, rgba(154, 154, 216, 0.5),rgba(25, 25, 150, 0.5)), url(meggy.jpg);
+    background-position: center;
+}
+
+header{
+    margin-top: -23vh;
+    color: white;
+    letter-spacing: 1rem;
+    font-size: 3vw;
+    text-shadow: 0 0 0.5rem rgba(50, 50, 170, 0.3);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+main{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.input-container{
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 0 1rem blue;
+    border-radius: 10px;
+}
+
+#desc{
+    width: 90%;
+    border: none;
+}
+
+#desc:focus{
+    outline: none;
+    border-bottom: 1px solid blue;
+}
+
+.fa-plus{
+    cursor: pointer;
+    color: blue;
+    border: 1px solid blue;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.todolist-container{
+    margin-top: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 1rem blue;
+    padding: 1rem;
+    height: 50vh;
+    overflow: auto;
+}
+
+.todoitem{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid lightblue;
+}
+
+.fa-trash{
+    cursor: pointer;
+    color: red;
+}
+
+.fa-check{
+    cursor: pointer;
+}
+
+.green{
+    color: green;
+}
+
+.done{
+    text-decoration: line-through;
+}

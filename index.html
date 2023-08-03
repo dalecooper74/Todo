@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner"></div>
+    <header><h1>My Todos</h1></header>
+    <main>
+        <div class="input-container">
+            <input type="text" id="desc" placeholder="add new todo...">
+            <i class="fa-solid fa-plus fa-2x" onclick="add()"></i>
+        </div>
+        <div class="todolist-container">
+            <div class="todos"></div>
+        </div>
+    </main>
+
+    <script>
+        const delIcon = `<i class="fa-solid fa-trash fa-2x" onclick="del(this)"></i>`
+        const checkIcon = (cls='') => `<i class="fa-solid fa-check fa-2x ${cls}" onclick="mytoggle(this)"></i>`
+
+        const renderlist=(arr)=>{
+            document.querySelector('.todos').innerHTML=''
+            arr.forEach(obj => {
+                let classname1 = obj.status ? 'done' : ''
+                let classname2 = obj.status ? 'green' : ''
+                document.querySelector('.todos').innerHTML+=`
+                <div class="todoitem" id=${obj.id}>
+                    ${checkIcon(classname2)}
+                    <span class=${classname1}>${obj.desc}</span>
+                    ${delIcon}
+                </div>
+                `
+            });
+        }
+
+        let mytodos=localStorage.getItem('mytodos')? JSON.parse(localStorage['mytodos']) :[]
+        
+        renderlist(mytodos)
+
+        const add=()=>{
+            let desc=document.getElementById('desc').value
+            //console.log(desc);
+            if(desc.length==0) return 
+            //console.log(new Date().getTime());
+            mytodos=[...mytodos, {id:new Date().getTime(), desc:desc, status: false}]
+            console.log(mytodos);
+            localStorage['mytodos']=JSON.stringify(mytodos)
+            renderlist(mytodos)
+         }
+        
+         const del=(domobj) => {
+            let delId = domobj.parentNode.id
+            console.log(delId);
+            mytodos = mytodos.filter(obj=>obj.id!=delId)
+            renderlist(mytodos)
+            localStorage['mytodos']=JSON.stringify(mytodos)
+         }
+
+         const mytoggle = (domobj) => {
+            let delId = domobj.parentNode.id
+            mytodos.forEach(obj => {
+                if(obj.id==delId) obj.status = !obj.status
+            })
+            renderlist(mytodos)
+            localStorage['mytodos']=JSON.stringify(mytodos)
+
+         }
+    </script>
+</body>
+</html>
